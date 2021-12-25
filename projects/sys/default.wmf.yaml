@@ -14,6 +14,7 @@ paths:
       - path: sys/parsoid.js
         options:
           host: '{{options.parsoid.host}}'
+          domain: '{{options.parsoid.domain}}'
           response_cache_control: '{{options.purged_cache_control}}'
           grace_ttl: '{{default(options.parsoid.grace_ttl, 86400)}}'
           # A list of pages that we don't currently want to re-render on
