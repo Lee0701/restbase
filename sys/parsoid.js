@@ -119,6 +119,7 @@ class ParsoidService {
 
     _initOpts(opts = {}) {
         this.options = opts;
+        this.parsoidDomain = opts.domain || opts.parsoidDomain
         this.parsoidUri = opts.host || opts.parsoidHost;
         this.options.stash_ratelimit = opts.stash_ratelimit || 5;
         delete this.options.parsoidHost;
@@ -172,7 +173,7 @@ class ParsoidService {
      */
     _getParsoidReq(req, path, headers, body) {
         return {
-            uri: new URI(`${this.parsoidUri}/${req.params.domain}/v3/${path}`),
+            uri: new URI(`${this.parsoidUri}/${this.parsoidDomain || req.params.domain}/v3/${path}`),
             headers: Object.assign({ host: req.params.domain }, headers || {}),
             body
         };
